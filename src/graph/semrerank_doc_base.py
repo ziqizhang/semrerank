@@ -62,8 +62,11 @@ def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
                            topN, simT, G, global_similarity_lookup,stopwords):
     terms = utils.read_lines(jate_output_from_a_file)
 
-    count = 0
+    constraint_node_set=None
+    if(exp_loader_doc_based.RESTRICT_NODES_TO_DOCUMENT):
+        constraint_node_set=terms_to_unigrams(terms, jate_term_max_n)
 
+    count = 0
     count_ngrams = 0
     count_ngrams_on_graph = 0
 
@@ -89,7 +92,7 @@ def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
             if len(norm_term_ngram) > 1 and term_ngram in embedding_model_keys:
                 selected_parts.append(term_ngram)
                 # get similarity vector and add to graph
-                stats = add_nodes_and_edges(G, term_ngram, embedding_model, topN, simT, None,
+                stats = add_nodes_and_edges(G, term_ngram, embedding_model, topN, simT, constraint_node_set,
                                             global_similarity_lookup)
                 if stats[0] > 0:
                     count_ngrams_on_graph += 1
@@ -105,6 +108,26 @@ def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
 
     # print("unigrams={}, added to graph={}".format(count_ngrams, count_ngrams_on_graph))
     return [count_ngrams_on_graph, count_ngrams]
+
+
+def terms_to_unigrams(terms, jate_term_max_n):
+    selected_words = list()
+    for term in terms:
+        norm_parts = utils.normalize_string(term)
+
+        term_ngrams = utils.find_ngrams(norm_parts, jate_term_max_n)
+        for term_ngram in term_ngrams:
+            if exp_loader_doc_based.REMOVE_STOPWORDS and term_ngram in stopwords:
+                continue
+            # check if this part maps to a phrase that is present in the model
+            norm_term_ngram = re.sub(r'[^a-zA-Z0-9,/\-\+\s_]', ' ',
+                                     term_ngram).strip()  # pattern must keep '_' as word2vec model replaces space with _ in n gram
+            if len(norm_term_ngram) > 1:
+                selected_words.append(term_ngram)
+
+    # print("unigrams={}, added to graph={}".format(count_ngrams, count_ngrams_on_graph))
+    return selected_words
+
 
 
 def add_nodes_and_edges(G, node, model, N, threshold, constrain_node_set, global_similarity_lookup):
