@@ -5,6 +5,7 @@ import os
 import queue
 import re
 import threading
+import jenkspy
 
 import time
 
@@ -59,12 +60,15 @@ def graph_build_log(stats, term):
 
 def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
                            embedding_model_keys, embedding_model,
-                           topN, simT, G, global_similarity_lookup,stopwords):
+                           topN, simT, G, global_similarity_lookup,stopwords, unigrams_from_all_terms):
     terms = utils.read_lines(jate_output_from_a_file)
 
     constraint_node_set=None
     if(exp_loader_doc_based.RESTRICT_NODES_TO_DOCUMENT):
-        constraint_node_set=terms_to_unigrams(terms, jate_term_max_n)
+        constraint_node_set=terms_to_unigrams(terms, jate_term_max_n, stopwords)
+        simT=determine_threshold(constraint_node_set, embedding_model, embedding_model_keys,100000)
+    if(exp_loader_doc_based.RESTRICT_NODES_TO_TERMS):
+        constraint_node_set=unigrams_from_all_terms
 
     count = 0
     count_ngrams = 0
@@ -110,7 +114,7 @@ def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
     return [count_ngrams_on_graph, count_ngrams]
 
 
-def terms_to_unigrams(terms, jate_term_max_n):
+def terms_to_unigrams(terms, jate_term_max_n, stopwords):
     selected_words = list()
     for term in terms:
         norm_parts = utils.normalize_string(term)
@@ -128,6 +132,18 @@ def terms_to_unigrams(terms, jate_term_max_n):
     # print("unigrams={}, added to graph={}".format(count_ngrams, count_ngrams_on_graph))
     return selected_words
 
+
+def determine_threshold(unigrams, model, model_keys, max):
+    scores=[]
+    for unigram in unigrams:
+        if unigram in model_keys:
+            similar = model.wv.most_similar(positive=unigram, topn=max)
+            for item in similar:
+                if(item[1]>0):
+                    scores.append(item[1])
+    breaks = jenkspy.jenks_breaks(scores, nb_class=2)
+    t = breaks[1]
+    return t
 
 
 def add_nodes_and_edges(G, node, model, N, threshold, constrain_node_set, global_similarity_lookup):
@@ -211,7 +227,7 @@ def init_personalized_vector(graph_nodes, sorted_jate_terms, topN, max_percentag
         gs_terms_list=[]
     else:
         gs_terms_list = utils.read_and_normalize_terms(exp_loader_doc_based.GS_TERMS_FILE)
-        print("supervised graph")
+        #print("supervised graph")
 
     for key in sorted_jate_terms:
         selected = selected + 1
@@ -311,6 +327,15 @@ def build_graph_batch(files, graph_data_folder,
     non_zero_elements_pnl_init=0
     sum_unigram_scores = {}
 
+    unigrams_from_all_terms=set()
+    if exp_loader_doc_based.RESTRICT_NODES_TO_TERMS:
+        for file in files:
+            terms = utils.read_lines(jate_out_folder_per_file + "/" + file)
+            unigrams_from_all_terms.update(terms_to_unigrams(terms, 5, stopwords))
+        if exp_loader_doc_based.RESTRICT_VOCAB_TO_TERMS:
+            topN=int(len(unigrams_from_all_terms)*0.15)
+        print("\tunigrams from all terms={}, revised topN={}".format(len(unigrams_from_all_terms), topN))
+
     for file in files:
         count += 1
         cached_graph_data = graph_data_folder + "/" + ntpath.basename(file)
@@ -324,7 +349,7 @@ def build_graph_batch(files, graph_data_folder,
         if (len(graph) == 0):  # build the graph for this file for the first time
             ngram_coverage_stats =build_graph_from_terms(
                     jate_out_folder_per_file + "/" + file,5, model_keys, model, topN, simT,
-                    graph, global_similarity_lookup, stopwords)
+                    graph, global_similarity_lookup, stopwords, unigrams_from_all_terms)
             total_ngrams_added_to_graph += ngram_coverage_stats[0]
             total_ngrams_from_terms += ngram_coverage_stats[1]
 

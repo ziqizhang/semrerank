@@ -5,12 +5,14 @@ from nltk import WordNetLemmatizer
 
 #GS_TERMS_FILE="/home/zqz/Work/data/jate_data/ttc/gs-en-windenergy.txt"
 #GS_TERMS_FILE="/home/zqz/Work/data/jate_data/ttc/gs-en-mobile-technology.txt"
-#GS_TERMS_FILE="/home/zqz/Work/data/jate_data/acl-rd-corpus-2.0/acl-rd-ver2-gs-terms.txt"
+GS_TERMS_FILE="/home/zqz/Work/data/jate_data/acl-rd-corpus-2.0/acl-rd-ver2-gs-terms.txt"
 #GS_TERMS_FILE="/home/zqz/Work/data/jate_data/genia_gs/concept/genia_gs_terms_v2.txt"
 
 
 TOPN_AUTO_DETERMINE=True
 RESTRICT_NODES_TO_DOCUMENT=False
+RESTRICT_NODES_TO_TERMS=True
+RESTRICT_VOCAB_TO_TERMS=True
 CPU_CORES=1
 REMOVE_STOPWORDS=True
 ADD_NODES_RECURSIVE=False
@@ -38,28 +40,28 @@ def create_settings():
     settings = list()
     root_folder = "/home/zqz/Work/data/semrerank"
 
-    jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/vote"
-    jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/min1_per_file"
-    system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/genia_atr4s"
-    personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/ttf.json"
-    output_folder="output_genia"
-    embedding_setting="em_g-uni-sg-100-w3-m1"
+    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/min1"
+    # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/min1_per_file"
+    # system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/genia_atr4s"
+    # personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/ttf.json"
+    # output_folder="output_genia_atr4s"
+    # embedding_setting="em_g-uni-sg-100-w3-m1"
 
-    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/vote"
-    # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/min1_per_file"
-    # system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/aclrd_ver2_atr4s"
-    # personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/ttf.json"
-    # output_folder="output_aclv2"
-    # embedding_setting="em_aclv2-uni-sg-100-w3-m1"
+    jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/min1"
+    jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/min1_per_file"
+    system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/aclrd_ver2"
+    personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/ttf.json"
+    output_folder="output_aclv2"
+    embedding_setting="em_aclv2-uni-sg-100-w3-m1"
 
-    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/vote"
+    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/min1"
     # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/min1_per_file"
     # system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/ttc_mobile_atr4s"
     # personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/ttf.json"
     # output_folder="output_ttcm"
     # embedding_setting="em_ttcm-uni-sg-100-w3-m1"
 
-    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/vote"
+    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/min1"
     # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/min1_per_file"
     # system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/ttc_wind"
     # personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/ttf.json"

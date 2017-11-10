@@ -220,7 +220,7 @@ def calculate_node_stats(target_folder, term_unigrams):
     return [anynode, termnode]
 
 
-def analyse_threshold(word2vec_model, jate_terms_file, stopwords, out_file):
+def analyse_threshold(word2vec_model, jate_terms_file, stopwords, out_file, term_only):
     model = Word2Vec.load(word2vec_model)
     jate_term_base_scores = {c[0]: c[1] for c in tr.jate_terms_iterator(jate_terms_file)}
     term_unigrams = set()
@@ -235,6 +235,7 @@ def analyse_threshold(word2vec_model, jate_terms_file, stopwords, out_file):
                 term_unigrams.add(part)
 
     f = open(out_file, 'w')
+    print(len(term_unigrams))
     line="UNIGRAM, 0.9, 0.8, 0.7, 0.6, 0.5\n"
     f.write(line)
     simTs=[0.9, 0.8, 0.7, 0.6, 0.5]
@@ -247,6 +248,8 @@ def analyse_threshold(word2vec_model, jate_terms_file, stopwords, out_file):
             #print(simT)
             count=0
             for item in similar:
+                if term_only and item[0] not in term_unigrams:
+                    continue
                 if item[1] < simT:
                     break
                 count+=1
@@ -271,8 +274,12 @@ def analyse_threshold(word2vec_model, jate_terms_file, stopwords, out_file):
 # analyze_node_degree(folder, jate_terms_file, stop, out_folder, folder_base_pattern)
 
 
-embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcm-uni-sg-100-w3-m1.model"
-jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile/ttf.json"
+embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcw-uni-sg-100-w3-m1.model"
+jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/ttf.json"
+# embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_aclv2-uni-sg-100-w3-m1.model"
+# jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/ttf.json"
+# embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_g-uni-sg-100-w3-m1.model"
+# jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/genia/ttf.json"
 stop = stopwords.words('english')
 out_file="/home/zqz/Work/data/semrerank/threshold-analysis.csv"
-analyse_threshold(embedding_model,jate_terms_file,stop,out_file)
+analyse_threshold(embedding_model,jate_terms_file,stop,out_file, True)
