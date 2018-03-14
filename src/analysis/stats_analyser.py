@@ -4,13 +4,26 @@ import networkx as nx
 from gensim.models import Word2Vec
 from nltk.corpus import stopwords
 
-import graph.semrerank_doc_base as tr
+import graph.semrerank_doc_graph as tr
 
-from graph import semrerank_doc_base
+from graph import semrerank_doc_graph
 from graph.semrerank_alg import jate_terms_iterator
 import pickle as pk
 
 from util import utils
+
+
+def count_mwt(in_file):
+    with open(in_file) as f:
+        lines = f.readlines()
+        total=len(lines)
+        mwt=0
+        for l in lines:
+            toks=l.split(" ")
+            if len(toks)>1:
+                mwt+=1
+
+    print("total={}, mwt={}".format(total, mwt/total))
 
 
 def analyse_coverage(semrerank_json_out, pageranks_file, jate_term_max_n):
@@ -129,7 +142,7 @@ def calculate_grap_stats(target_folder):
         target_file = target_folder + "/" + file
         if os.path.isdir(target_file):
             continue
-        graph_data = semrerank_doc_base.init_graph(target_folder + "/" + file)
+        graph_data = semrerank_doc_graph.init_graph(target_folder + "/" + file)
         graph = graph_data[0]
 
         if len(graph) == 0:
@@ -207,7 +220,7 @@ def calculate_node_stats(target_folder, term_unigrams):
         target_file = target_folder + "/" + file
         if os.path.isdir(target_file):
             continue
-        graph_data = semrerank_doc_base.init_graph(target_folder + "/" + file)
+        graph_data = semrerank_doc_graph.init_graph(target_folder + "/" + file)
         graph = graph_data[0]
 
         for node in graph.nodes():
@@ -273,6 +286,12 @@ def analyse_threshold(word2vec_model, jate_terms_file, stopwords, out_file, term
 # stop = stopwords.words('english')
 # analyze_node_degree(folder, jate_terms_file, stop, out_folder, folder_base_pattern)
 
+count_mwt("/home/zz/Work/data/jate_data/acl-rd-corpus-2.0/acl-rd-ver2-gs-terms.txt")
+count_mwt("/home/zz/Work/data/jate_data/genia_gs/concept/genia_gs_terms_v2.txt")
+count_mwt("/home/zz/Work/data/jate_data/ttc/gs-en-mobile-technology.txt")
+count_mwt("/home/zz/Work/data/jate_data/ttc/gs-en-windenergy.txt")
+
+exit(0)
 
 embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcw-uni-sg-100-w3-m1.model"
 jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/ttf.json"

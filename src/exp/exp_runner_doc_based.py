@@ -3,8 +3,8 @@ import logging
 import datetime
 import time
 from gensim.models import Word2Vec
-from graph import semrerank_doc_base as tr
-from exp import exp_loader_doc_based
+from graph import semrerank_doc_graph as tr
+from exp import exp_loader_doc_graph
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='graph.log',level=logging.INFO, filemode='w')
@@ -25,7 +25,7 @@ def run(word2vec_model, jate_out_terms, jate_outfolder_per_file, topN_similar, s
 
 ##### starting experiments
 print ("{}".format(time.strftime("%H:%M:%S")))
-settings = exp_loader_doc_based.create_settings()
+settings = exp_loader_doc_graph.create_settings()
 for setting in settings:
     print("\nSETTING {}, {}".format(setting[10], setting[1]))
     run(setting[0], setting[1], setting[8], setting[2], setting[3],

@@ -5,7 +5,6 @@ import os
 import queue
 import re
 import threading
-import jenkspy
 
 import time
 
@@ -15,8 +14,8 @@ import datetime
 
 from nltk.corpus import stopwords
 
-from exp import exp_loader_doc_based
-from exp import exp_loader_doc_based as exp
+from exp import exp_loader_doc_graph
+from exp import exp_loader_doc_graph as exp
 from util import utils
 import networkx as nx
 import pickle as pk
@@ -33,11 +32,16 @@ def jate_terms_iterator(jate_json_outfile):
     json_data = open(jate_json_outfile).read()
     data = json.loads(json_data)
     count = 0
-    for term in data:
-        count = count + 1
-        yield term['string'], term['score']
-        if (count % 2000 == 0):
-            logger.info("\t loaded {}".format(count))
+    if type(data) is dict:
+        for k, v in data.items():
+            yield k, v
+    else:
+        for term in data:
+            count = count + 1
+            try:
+                yield term['string'], term['score']
+            except TypeError:
+                print("error")
 
 
 def init_graph(graph_data_file):
@@ -64,10 +68,10 @@ def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
     terms = utils.read_lines(jate_output_from_a_file)
 
     constraint_node_set=None
-    if(exp_loader_doc_based.RESTRICT_NODES_TO_DOCUMENT):
+    if(exp_loader_doc_graph.RESTRICT_NODES_TO_DOCUMENT):
         constraint_node_set=terms_to_unigrams(terms, jate_term_max_n, stopwords)
         simT=determine_threshold(constraint_node_set, embedding_model, embedding_model_keys,100000)
-    if(exp_loader_doc_based.RESTRICT_NODES_TO_TERMS):
+    if(exp_loader_doc_graph.RESTRICT_NODES_TO_TERMS):
         constraint_node_set=unigrams_from_all_terms
 
     count = 0
@@ -87,7 +91,7 @@ def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
         for term_ngram in term_ngrams:
             if term_ngram in processed_unigram_nodes:
                 continue
-            if exp_loader_doc_based.REMOVE_STOPWORDS and term_ngram in stopwords:
+            if exp_loader_doc_graph.REMOVE_STOPWORDS and term_ngram in stopwords:
                 continue
             processed_unigram_nodes.add(term_ngram)
             # check if this part maps to a phrase that is present in the model
@@ -106,9 +110,9 @@ def build_graph_from_terms(jate_output_from_a_file, jate_term_max_n,
             # else:
             #     graph_build_log(stats,term[0])
 
-    if exp_loader_doc_based.ADD_NODES_RECURSIVE:
+    if exp_loader_doc_graph.ADD_NODES_RECURSIVE:
         add_nodes_and_edges_recursive(G, processed_unigram_nodes, embedding_model, topN, simT, 1,
-                                      exp_loader_doc_based.ADD_NODES_RECURSIVE_MAX_ITER)
+                                      exp_loader_doc_graph.ADD_NODES_RECURSIVE_MAX_ITER)
 
     # print("unigrams={}, added to graph={}".format(count_ngrams, count_ngrams_on_graph))
     return [count_ngrams_on_graph, count_ngrams]
@@ -121,7 +125,7 @@ def terms_to_unigrams(terms, jate_term_max_n, stopwords):
 
         term_ngrams = utils.find_ngrams(norm_parts, jate_term_max_n)
         for term_ngram in term_ngrams:
-            if exp_loader_doc_based.REMOVE_STOPWORDS and term_ngram in stopwords:
+            if exp_loader_doc_graph.REMOVE_STOPWORDS and term_ngram in stopwords:
                 continue
             # check if this part maps to a phrase that is present in the model
             norm_term_ngram = re.sub(r'[^a-zA-Z0-9,/\-\+\s_]', ' ',
@@ -134,16 +138,7 @@ def terms_to_unigrams(terms, jate_term_max_n, stopwords):
 
 
 def determine_threshold(unigrams, model, model_keys, max):
-    scores=[]
-    for unigram in unigrams:
-        if unigram in model_keys:
-            similar = model.wv.most_similar(positive=unigram, topn=max)
-            for item in similar:
-                if(item[1]>0):
-                    scores.append(item[1])
-    breaks = jenkspy.jenks_breaks(scores, nb_class=2)
-    t = breaks[1]
-    return t
+    return None
 
 
 def add_nodes_and_edges(G, node, model, N, threshold, constrain_node_set, global_similarity_lookup):
@@ -223,16 +218,16 @@ def init_personalized_vector(graph_nodes, sorted_jate_terms, topN, max_percentag
 
     max_init_vertices = max_percentage * len(graph_nodes)
 
-    if (exp_loader_doc_based.GS_TERMS_FILE==""):
+    if (exp_loader_doc_graph.GS_TERMS_FILE== ""):
         gs_terms_list=[]
     else:
-        gs_terms_list = utils.read_and_normalize_terms(exp_loader_doc_based.GS_TERMS_FILE)
+        gs_terms_list = utils.read_and_normalize_terms(exp_loader_doc_graph.GS_TERMS_FILE)
         #print("supervised graph")
 
     for key in sorted_jate_terms:
         selected = selected + 1
 
-        key = exp_loader_doc_based.lemmatizer.lemmatize(key).strip().lower()
+        key = exp_loader_doc_graph.lemmatizer.lemmatize(key).strip().lower()
         key = re.sub(r'[^a-zA-Z0-9,/\-\+\s]', ' ', key).strip()
         if len(gs_terms_list)>0 and len(key)>2:
             if key not in gs_terms_list:
@@ -307,8 +302,12 @@ def generate_term_component_map(jate_term_base_scores, jate_term_max_n, model):
             # check if this part maps to a phrase that is present in the model
             norm_term_ngram = re.sub(r'[^a-zA-Z0-9,/\-\+\s_]', ' ',
                                      term_ngram).strip()  # pattern must keep '_' as word2vec model replaces space with _ in n gram
-            if len(norm_term_ngram) > 1 and term_ngram in model:
-                selected_parts.append(term_ngram)
+            if model is not None:
+                if len(norm_term_ngram) > 1 and term_ngram in model:
+                    selected_parts.append(term_ngram)
+            else:
+                if len(norm_term_ngram) > 1:
+                    selected_parts.append(term_ngram)
         jate_terms_components[term] = selected_parts
     return jate_terms_components
 
@@ -328,11 +327,11 @@ def build_graph_batch(files, graph_data_folder,
     sum_unigram_scores = {}
 
     unigrams_from_all_terms=set()
-    if exp_loader_doc_based.RESTRICT_NODES_TO_TERMS:
+    if exp_loader_doc_graph.RESTRICT_NODES_TO_TERMS:
         for file in files:
             terms = utils.read_lines(jate_out_folder_per_file + "/" + file)
             unigrams_from_all_terms.update(terms_to_unigrams(terms, 5, stopwords))
-        if exp_loader_doc_based.RESTRICT_VOCAB_TO_TERMS:
+        if exp_loader_doc_graph.RESTRICT_VOCAB_TO_TERMS:
             topN=int(len(unigrams_from_all_terms)*0.15)
         print("\tunigrams from all terms={}, revised topN={}".format(len(unigrams_from_all_terms), topN))
 
@@ -379,13 +378,13 @@ def build_graph_batch(files, graph_data_folder,
                 personalized_init=output[0]
                 non_zero_elements_pnl_init+=output[1]
 
-            if exp_loader_doc_based.LOG_PAGERAGE:
+            if exp_loader_doc_graph.LOG_PAGERAGE:
                 logger.info("PageRank starts at {}".format(time.strftime("%H:%M:%S")))
             semrerank = nx.pagerank(graph,
                                     alpha=0.85, personalization=personalized_init,
                                     max_iter=5000, tol=1e-06)
             semrerank = utils.normalize(semrerank)
-            if exp_loader_doc_based.LOG_PAGERAGE:
+            if exp_loader_doc_graph.LOG_PAGERAGE:
                 logger.info("\t completes at {}".format(time.strftime("%H:%M:%S")))
             save_ranks_to_cache(cached_graph_data, personalized, semrerank)
 
@@ -470,12 +469,12 @@ def main(jate_json_outfile, jate_out_folder_per_file,
     all_files = []
     for file in os.listdir(jate_out_folder_per_file):
         all_files.append(file)
-    segs = np.array_split(all_files, exp_loader_doc_based.CPU_CORES)
+    segs = np.array_split(all_files, exp_loader_doc_graph.CPU_CORES)
     result = queue.Queue()
     thread_list = []
     stop = stopwords.words('english')
 
-    if exp_loader_doc_based.TOPN_AUTO_DETERMINE:
+    if exp_loader_doc_graph.TOPN_AUTO_DETERMINE:
         vocab_size=0
         for v in model_keys:
             norm = re.sub(r'[^a-zA-Z0-9,/\-\+\s_]', ' ',

@@ -1,7 +1,7 @@
 
 #given a candidate term, and a list of component word/phrases found on the graph, return the optimum subset of the components
 #that covers the term
-from exp import exp_loader_doc_based
+from exp import exp_loader_doc_graph
 from util import utils
 from nltk.corpus import stopwords
 
@@ -17,7 +17,7 @@ class SemReRankScorer(object):
     def __init__(self, pageranks, jate_term_map, base_scores):
         self.pageranks = pageranks
         self.base_scores=base_scores
-        if exp_loader_doc_based.SCORING_NORMALIZE_JATE_SCORE:
+        if exp_loader_doc_graph.SCORING_NORMALIZE_JATE_SCORE:
             self.base_scores=utils.normalize(base_scores)
         self.jate_term_map=jate_term_map
 
@@ -31,10 +31,10 @@ class SemReRankScorer(object):
             totalNonZeroComponents=0.0
             for c in components:
                 if c in self.pageranks.keys():
-                    if exp_loader_doc_based.REMOVE_STOPWORDS and c not in stopwords.words('english'):
+                    if exp_loader_doc_graph.REMOVE_STOPWORDS and c not in stopwords.words('english'):
                         totalScore=totalScore+self.pageranks[c]
                         totalNonZeroComponents=totalNonZeroComponents+1.0
-                    elif not exp_loader_doc_based.REMOVE_STOPWORDS:
+                    elif not exp_loader_doc_graph.REMOVE_STOPWORDS:
                         totalScore=totalScore+self.pageranks[c]
                         totalNonZeroComponents=totalNonZeroComponents+1.0
 

@@ -12,7 +12,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from pathlib import Path
 
-from exp import exp_loader_doc_based
+from exp import exp_loader_doc_graph
 
 WORD_EMBEDDING_VOCAB_MIN_LENGTH=3
 
@@ -57,7 +57,7 @@ def normalize_string(original):
     for tok in toks:
         # if tok=="b_alpha" or 'dihydroxycholecalciferol' in tok:
         #     print("caught")
-        lem = exp_loader_doc_based.lemmatizer.lemmatize(tok).strip().lower()
+        lem = exp_loader_doc_graph.lemmatizer.lemmatize(tok).strip().lower()
         lem = re.sub(r'[^a-zA-Z0-9,/\-\+\s]', ' ', lem).strip()
         for part in lem.split():
             if keep_token(lem):
@@ -76,7 +76,7 @@ def read_and_normalize_terms(filePath):
     with open(filePath, encoding="utf-8") as file:
         terms = file.readlines()
         for t in terms:
-            t = exp_loader_doc_based.lemmatizer.lemmatize(t.strip()).strip().lower()
+            t = exp_loader_doc_graph.lemmatizer.lemmatize(t.strip()).strip().lower()
             t = re.sub(r'[^a-zA-Z0-9,/\-\+\s]', ' ', t).strip()
             list.append(t)
     return list

@@ -5,14 +5,16 @@ import re
 from gensim.models import Word2Vec
 from nltk.corpus import stopwords
 
-import graph.semrerank_doc_base as tr
+import graph.semrerank_doc_graph as tr
 from util import utils
-import graph.semrerank_doc_base as td
+import graph.semrerank_doc_graph as td
 import graph.semrerank_scorer as ts
 
 
 def run_random_baseline(word2vec_model, jate_terms_file, stopwords, jate_terms_folder, out_folder):
-    model = Word2Vec.load(word2vec_model)
+    model=None
+    if word2vec_model is not None:
+        model = Word2Vec.load(word2vec_model)
     jate_term_base_scores = {c[0]: c[1] for c in tr.jate_terms_iterator(jate_terms_file)}
     term_unigrams = set()
     for term in jate_term_base_scores.keys():
@@ -44,12 +46,23 @@ def run_random_baseline(word2vec_model, jate_terms_file, stopwords, jate_terms_f
         with open(out_file, 'w') as outfile:
             json.dump(list(term_rank_scores), outfile)
 
-
-embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcw-uni-sg-100-w3-m1.model"
-jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind_atr4s/min1/Basic.txt"
+embedding_model = None
+jate_terms_file="/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/min1/cvalue.json"
 stop = stopwords.words('english')
-jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind_atr4s/vote"
-out_folder="/home/zqz/Work/data/semrerank/random/ttc_wind"
+jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/min1_texpr"
+out_folder="/home/zz/Work/data/texpr/texpr_output/acl_texpr_random"
+
+# embedding_model = None
+# jate_terms_file="/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1/cvalue.json"
+# stop = stopwords.words('english')
+# jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1_texpr"
+# out_folder="/home/zz/Work/data/texpr/texpr_output/genia_texpr_random"
+
+# embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcw-uni-sg-100-w3-m1.model"
+# jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind_atr4s/min1/Basic.txt"
+# stop = stopwords.words('english')
+# jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind_atr4s/vote"
+# out_folder="/home/zqz/Work/data/semrerank/random/ttc_wind"
 
 # embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcm-uni-sg-100-w3-m1.model"
 # jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile/min1/cvalue.json"

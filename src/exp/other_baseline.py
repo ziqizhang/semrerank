@@ -6,9 +6,9 @@ import datetime
 from gensim.models import Word2Vec
 from nltk.corpus import stopwords
 
-import graph.semrerank_doc_base as tr
+import graph.semrerank_doc_graph as tr
 from util import utils
-import graph.semrerank_doc_base as td
+import graph.semrerank_doc_graph as td
 import graph.semrerank_scorer as ts
 
 
@@ -136,45 +136,45 @@ def compute(score_lookup, word2vec_model, jate_terms_file, stopwords,
 
 
 
-# ATE_ALG_SET="_atr4s" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
-# embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcm-uni-sg-100-w3-m1.model"
-# jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile"+ATE_ALG_SET+"/min1/Basic.txt"
-# jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile"+ATE_ALG_SET+"/min1"
-# stop = stopwords.words('english')
-# #word_weight_file="/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_ttcm.txt"
-# word_weight_file="/home/zqz/Work/data/semrerank/word_weights/textrank/v2_per_unsup/ttcm/atr4s"
-# #out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/ttcm"
-# out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank_per_unsup/ttcm"
-
-# ATE_ALG_SET="_atr4s" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
-# embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_ttcw-uni-sg-100-w3-m1.model"
-# jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind"+ATE_ALG_SET+"/min1/Basic.txt"
-# jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind"+ATE_ALG_SET+"/min1"
-# stop = stopwords.words('english')
-# #word_weight_file="/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_ttcw.txt"
-# word_weight_file="/home/zqz/Work/data/semrerank/word_weights/textrank/v2_per_unsup/ttcw/atr4s"
-# #out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/ttcw"
-# out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank_per_unsup/ttcw"
-
-# ATE_ALG_SET="_atr4s" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
-# embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_aclv2-uni-sg-100-w3-m1.model"
-# jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2"+ATE_ALG_SET+"/min1/Basic.txt"
-# stop = stopwords.words('english')
-# jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2"+ATE_ALG_SET+"/min1"
-# #word_weight_file= "/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_aclv2.txt"
-# word_weight_file= "/home/zqz/Work/data/semrerank/word_weights/textrank/v2_per_unsup/aclv2/atr4s"
-# #out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/aclrd_ver2"
-# out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank_per_unsup/"
-
-ATE_ALG_SET="_atr4s" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
-embedding_model = "/home/zqz/Work/data/semrerank/embeddings/em_g-uni-sg-100-w3-m1.model"
-jate_terms_file="/home/zqz/Work/data/semrerank/jate_lrec2016/genia"+ATE_ALG_SET+"/min1/Basic.txt"
+ATE_ALG_SET="" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
+embedding_model = "/home/zz/Work/data/semrerank/embeddings/em_ttcm-uni-sg-100-w3-m1.model"
+jate_terms_file="/home/zz/Work/data/semrerank/jate_lrec2016/ttc_mobile"+ATE_ALG_SET+"/min1/cvalue.json"
+jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/ttc_mobile"+ATE_ALG_SET+"/vote"
 stop = stopwords.words('english')
-jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/genia"+ATE_ALG_SET+"/min1"
-#word_weight_file= "/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_genia.txt"
-word_weight_file= "/home/zqz/Work/data/semrerank/word_weights/textrank/v2_per_unsup/genia/atr4s"
-#out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/genia"
-out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank_per_unsup"
+# #word_weight_file="/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_ttcm.txt"
+word_weight_file="/home/zz/Work/data/semrerank/word_weights/textrank/v2_per_sup/ttcm/jate"
+# #out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/ttcm"
+out_folder="/home/zz/Work/data/semrerank/ate_output/textrank_per_sup/ttcm"
+
+# ATE_ALG_SET="" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
+# embedding_model = "/home/zz/Work/data/semrerank/embeddings/em_ttcw-uni-sg-100-w3-m1.model"
+# jate_terms_file="/home/zz/Work/data/semrerank/jate_lrec2016/ttc_wind"+ATE_ALG_SET+"/min1/cvalue.json"
+# jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/ttc_wind"+ATE_ALG_SET+"/vote"
+# stop = stopwords.words('english')
+# # #word_weight_file="/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_ttcw.txt"
+# word_weight_file="/home/zz/Work/data/semrerank/word_weights/textrank/v2_per_sup/ttcw/jate"
+# # #out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/ttcw"
+# out_folder="/home/zz/Work/data/semrerank/ate_output/textrank_per_sup/ttcw"
+
+# ATE_ALG_SET="" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
+# embedding_model = "/home/zz/Work/data/semrerank/embeddings/em_aclv2-uni-sg-100-w3-m1.model"
+# jate_terms_file="/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2"+ATE_ALG_SET+"/min1/cvalue.json"
+# stop = stopwords.words('english')
+# jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2"+ATE_ALG_SET+"/vote"
+# # #word_weight_file= "/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_aclv2.txt"
+# word_weight_file= "/home/zz/Work/data/semrerank/word_weights/textrank/v2_per_sup/aclv2/jate"
+# # #out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/aclrd_ver2"
+# out_folder="/home/zz/Work/data/semrerank/ate_output/textrank_per_sup/aclrd_ver2"
+
+# ATE_ALG_SET="" #use empty string for jate ate algorithms' output; _atr4s for atr4s' algorithms
+# embedding_model = "/home/zz/Work/data/semrerank/embeddings/em_g-uni-sg-100-w3-m1.model"
+# jate_terms_file="/home/zz/Work/data/semrerank/jate_lrec2016/genia"+ATE_ALG_SET+"/min1/cvalue.json"
+# stop = stopwords.words('english')
+# jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/genia"+ATE_ALG_SET+"/vote"
+# #word_weight_file= "/home/zqz/Work/data/semrerank/word_weights/textrank/v2/words_genia.txt"
+# word_weight_file= "/home/zz/Work/data/semrerank/word_weights/textrank/v2_per_sup/genia/jate"
+# #out_folder="/home/zqz/Work/data/semrerank/ate_output/textrank/genia"
+# out_folder="/home/zz/Work/data/semrerank/ate_output/textrank_per_sup/genia"
 
 
 if word_weight_file.endswith(".txt"):
