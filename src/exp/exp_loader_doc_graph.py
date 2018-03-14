@@ -5,7 +5,7 @@ from nltk import WordNetLemmatizer
 
 #GS_TERMS_FILE="/home/zqz/Work/data/jate_data/ttc/gs-en-windenergy.txt"
 #GS_TERMS_FILE="/home/zqz/Work/data/jate_data/ttc/gs-en-mobile-technology.txt"
-GS_TERMS_FILE="/home/zqz/Work/data/jate_data/acl-rd-corpus-2.0/acl-rd-ver2-gs-terms.txt"
+GS_TERMS_FILE="/home/zz/Work/data/jate_data/acl-rd-corpus-2.0/acl-rd-ver2-gs-terms.txt"
 #GS_TERMS_FILE="/home/zqz/Work/data/jate_data/genia_gs/concept/genia_gs_terms_v2.txt"
 
 
@@ -38,21 +38,21 @@ def create_setting(word2vec_model, jate_out_terms, topN_similar, similarity_thre
 
 def create_settings():
     settings = list()
-    root_folder = "/home/zqz/Work/data/semrerank"
+    root_folder = "/home/zz/Work/data/semrerank"
 
-    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/min1"
-    # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/min1_per_file"
-    # system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/genia_atr4s"
-    # personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/genia_atr4s/ttf.json"
-    # output_folder="output_genia_atr4s"
-    # embedding_setting="em_g-uni-sg-100-w3-m1"
+    jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1"
+    jate_outfolder_per_file = "/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1_per_file"
+    system_folder="/home/zz/Work/data/semrerank/graph/doc_based/genia"
+    personalization_seed="/home/zz/Work/data/semrerank/jate_lrec2016/genia/ttf.json"
+    output_folder="output_genia"
+    embedding_setting="em_g-uni-sg-100-w3-m1"
 
-    jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/min1"
-    jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/min1_per_file"
-    system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/aclrd_ver2"
-    personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/aclrd_ver2/ttf.json"
-    output_folder="output_aclv2"
-    embedding_setting="em_aclv2-uni-sg-100-w3-m1"
+    # jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/min1"
+    # jate_outfolder_per_file = "/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/min1_per_file"
+    # system_folder="/home/zz/Work/data/semrerank/graph/doc_based/aclrd_ver2_atr4s"
+    # personalization_seed="/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/ttf.json"
+    # output_folder="output_aclv2_atr4s"
+    # embedding_setting="em_aclv2-uni-sg-100-w3-m1"
 
     # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/min1"
     # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/min1_per_file"
@@ -75,39 +75,39 @@ def create_settings():
             base = os.path.basename(file)
             ate = os.path.splitext(base)[0]
 
-            k = round(k, 1)
-            graph_setting = "g_dn-pn-top{}-pnl0-t".format(topN)
-            create_setting("{}/embeddings/{}.model".format(root_folder, embedding_setting),
-                           jate_terms_folder + "/" + str(file),
-                           topN,
-                           k,
-                           5,
-                           system_folder,
-                           "{}/{}/{}-{},{}{}.json".format(root_folder,output_folder,
-                                                              ate, embedding_setting,
-                                                              graph_setting, k),
-                           None,
-                           "{},{}{}".format(embedding_setting, graph_setting, k),
-                           jate_outfolder_per_file,
-                           settings, personalization_seed)
+            # k = round(k, 1)
+            # graph_setting = "g_dn-pn-top{}-pnl0-t".format(topN)
+            # create_setting("{}/embeddings/{}.model".format(root_folder, embedding_setting),
+            #                jate_terms_folder + "/" + str(file),
+            #                topN,
+            #                k,
+            #                5,
+            #                system_folder,
+            #                "{}/{}/{}-{},{}{}.json".format(root_folder,output_folder,
+            #                                                   ate, embedding_setting,
+            #                                                   graph_setting, k),
+            #                None,
+            #                "{},{}{}".format(embedding_setting, graph_setting, k),
+            #                jate_outfolder_per_file,
+            #                settings, personalization_seed)
 
             #print(process.memory_info().rss)
 
-            pnl=50
-            graph_setting = "g_dn-pn-top{}-pnl50-t".format(topN)
-            create_setting("{}/embeddings/{}.model".format(root_folder, embedding_setting),
-                           jate_terms_folder + "/" + str(file),
-                           topN,
-                           k,
-                           5,
-                           system_folder,
-                           "{}/{}/{}-{},{}{}.json".format(root_folder,output_folder,
-                                                              ate, embedding_setting,
-                                                              graph_setting, k),
-                           pnl,
-                           "{},{}{}".format(embedding_setting, graph_setting, k),
-                           jate_outfolder_per_file,
-                           settings, personalization_seed)
+            # pnl=50
+            # graph_setting = "g_dn-pn-top{}-pnl50-t".format(topN)
+            # create_setting("{}/embeddings/{}.model".format(root_folder, embedding_setting),
+            #                jate_terms_folder + "/" + str(file),
+            #                topN,
+            #                k,
+            #                5,
+            #                system_folder,
+            #                "{}/{}/{}-{},{}{}.json".format(root_folder,output_folder,
+            #                                                   ate, embedding_setting,
+            #                                                   graph_setting, k),
+            #                pnl,
+            #                "{},{}{}".format(embedding_setting, graph_setting, k),
+            #                jate_outfolder_per_file,
+            #                settings, personalization_seed)
 
 
             pnl=100
@@ -142,20 +142,20 @@ def create_settings():
                            jate_outfolder_per_file,
                            settings, personalization_seed)
 
-            pnl=500
-            graph_setting = "g_dn-pn-top{}-pnl500-t".format(topN)
-            create_setting("{}/embeddings/{}.model".format(root_folder, embedding_setting),
-                           jate_terms_folder + "/" + str(file),
-                           topN,
-                           k,
-                           5,
-                           system_folder,
-                           "{}/{}/{}-{},{}{}.json".format(root_folder,output_folder,
-                                                              ate, embedding_setting,
-                                                              graph_setting, k),
-                           pnl,
-                           "{},{}{}".format(embedding_setting, graph_setting, k),
-                           jate_outfolder_per_file,
-                           settings, personalization_seed)
+            # pnl=500
+            # graph_setting = "g_dn-pn-top{}-pnl500-t".format(topN)
+            # create_setting("{}/embeddings/{}.model".format(root_folder, embedding_setting),
+            #                jate_terms_folder + "/" + str(file),
+            #                topN,
+            #                k,
+            #                5,
+            #                system_folder,
+            #                "{}/{}/{}-{},{}{}.json".format(root_folder,output_folder,
+            #                                                   ate, embedding_setting,
+            #                                                   graph_setting, k),
+            #                pnl,
+            #                "{},{}{}".format(embedding_setting, graph_setting, k),
+            #                jate_outfolder_per_file,
+            #                settings, personalization_seed)
 
     return settings

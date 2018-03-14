@@ -1,3 +1,4 @@
+import json
 import os
 import random
 import tarfile
@@ -147,6 +148,21 @@ def genia_corpus_to_unigrams(input_gz_file, out_folder):
         for ug in unigrams:
             out_file.write("%s\n" % ug)
 
+
+def semrerank_json_reader(ssr_json_outfile):
+    json_data = open(ssr_json_outfile).read()
+    data = json.loads(json_data)
+    count = 0
+    if type(data) is dict:
+        for k, v in data.items():
+            yield k, v
+    else:
+        for term in data:
+            count = count + 1
+            try:
+                yield term['string'], term['score-mult']
+            except TypeError:
+                print("error")
 
 
 IN_CORPUS="/home/zqz/GDrive/papers/cicling2017/data/semrerank/corpus/genia.tar.gz"

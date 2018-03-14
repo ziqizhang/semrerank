@@ -482,7 +482,7 @@ def main(jate_json_outfile, jate_out_folder_per_file,
             if (norm in stop or len(norm) < 2):
                 continue
             vocab_size+=1
-        topN=int(round(vocab_size*0.1))
+        topN=int(round(vocab_size*0.15))
         #topN=3762
         logger.info("SELECTED_TOPN={}".format(topN))
         print("SELECTED_TOPN={}".format(topN))

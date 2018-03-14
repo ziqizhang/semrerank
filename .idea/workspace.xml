@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59abee5-fc25-4cb8-af7e-fa028b6b6a23" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/semrerank.iml" afterPath="$PROJECT_DIR$/.idea/semrerank.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/analysis/stats_analyser.py" afterPath="$PROJECT_DIR$/src/analysis/stats_analyser.py" />
-      <change beforePath="$PROJECT_DIR$/src/exp/exp_loader_doc_based.py" afterPath="$PROJECT_DIR$/src/exp/exp_loader_doc_graph.py" />
-      <change beforePath="$PROJECT_DIR$/src/exp/exp_runner_doc_based.py" afterPath="$PROJECT_DIR$/src/exp/exp_runner_doc_based.py" />
-      <change beforePath="$PROJECT_DIR$/src/exp/other_baseline.py" afterPath="$PROJECT_DIR$/src/exp/other_baseline.py" />
-      <change beforePath="$PROJECT_DIR$/src/exp/random_baseline.py" afterPath="$PROJECT_DIR$/src/exp/random_baseline.py" />
-      <change beforePath="$PROJECT_DIR$/src/exp/semrerank.log" afterPath="$PROJECT_DIR$/src/exp/semrerank.log" />
-      <change beforePath="$PROJECT_DIR$/src/graph/semrerank_doc_base.py" afterPath="$PROJECT_DIR$/src/graph/semrerank_doc_graph.py" />
-      <change beforePath="$PROJECT_DIR$/src/graph/semrerank_scorer.py" afterPath="$PROJECT_DIR$/src/graph/semrerank_scorer.py" />
+      <change beforePath="$PROJECT_DIR$/src/analysis/semrerank.log" afterPath="$PROJECT_DIR$/src/analysis/semrerank.log" />
+      <change beforePath="$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py" afterPath="$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py" />
+      <change beforePath="$PROJECT_DIR$/src/exp/exp_loader_doc_graph.py" afterPath="$PROJECT_DIR$/src/exp/exp_loader_doc_graph.py" />
+      <change beforePath="$PROJECT_DIR$/src/exp/exp_runner_doc_based.py" afterPath="$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py" />
+      <change beforePath="$PROJECT_DIR$/src/graph/semrerank_doc_graph.py" afterPath="$PROJECT_DIR$/src/graph/semrerank_doc_graph.py" />
       <change beforePath="$PROJECT_DIR$/src/util/utils.py" afterPath="$PROJECT_DIR$/src/util/utils.py" />
-      <change beforePath="$PROJECT_DIR$/textrank" afterPath="" />
     </list>
     <ignored path="semrerank.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="random_baseline.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/exp/random_baseline.py">
+      <file leaf-file-name="exp_loader_doc_graph.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/exp/exp_loader_doc_graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="52" column="53" lean-forward="false" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
+            <state relative-caret-position="141">
+              <caret line="49" column="65" lean-forward="false" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -48,8 +40,8 @@
       <file leaf-file-name="semrerank_doc_graph.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graph/semrerank_doc_graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="521" column="50" lean-forward="true" selection-start-line="520" selection-start-column="4" selection-end-line="521" selection-end-column="50" />
+            <state relative-caret-position="141">
+              <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -57,21 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stats_analyser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/analysis/stats_analyser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="301" column="0" lean-forward="false" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="term_word_frequency_analysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="107" column="4" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+            <state relative-caret-position="367">
+              <caret line="283" column="76" lean-forward="false" selection-start-line="283" selection-start-column="76" selection-end-line="283" selection-end-column="76" />
               <folding>
                 <element signature="e#185#195#0" expanded="true" />
               </folding>
@@ -94,6 +76,8 @@
       <find>stop</find>
       <find>lemm</find>
       <find>open</find>
+      <find>lines</find>
+      <find>csv</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -109,7 +93,6 @@
         <option value="$PROJECT_DIR$/src/exp/exp_loader.py" />
         <option value="$PROJECT_DIR$/src/exp/exp_runner.py" />
         <option value="$PROJECT_DIR$/src/graph/semrerank_scorer.py" />
-        <option value="$PROJECT_DIR$/src/util/utils.py" />
         <option value="$PROJECT_DIR$/src/exp/exp_loader_doc_based.py" />
         <option value="$PROJECT_DIR$/src/textrank/keyword.py" />
         <option value="$PROJECT_DIR$/src/graph/semrerank_doc_base.py" />
@@ -117,6 +100,8 @@
         <option value="$PROJECT_DIR$/src/analysis/stats_analyser.py" />
         <option value="$PROJECT_DIR$/src/exp/other_baseline.py" />
         <option value="$PROJECT_DIR$/src/graph/semrerank_doc_graph.py" />
+        <option value="$PROJECT_DIR$/src/exp/exp_loader_doc_graph.py" />
+        <option value="$PROJECT_DIR$/src/util/utils.py" />
         <option value="$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py" />
       </list>
     </option>
@@ -168,6 +153,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="exp" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="semrerank" type="b2602c69:ProjectViewProjectNode" />
+              <item name="semrerank" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -203,7 +194,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="semrerank" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/exp/exp_runner_doc_based.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -449,10 +440,10 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.term_word_frequency_analysis" />
-        <item index="1" class="java.lang.String" itemvalue="Python.other_baseline" />
-        <item index="2" class="java.lang.String" itemvalue="Python.stats_analyser" />
-        <item index="3" class="java.lang.String" itemvalue="Python.random_baseline" />
-        <item index="4" class="java.lang.String" itemvalue="Python.exp_runner_doc_based" />
+        <item index="1" class="java.lang.String" itemvalue="Python.exp_runner_doc_based" />
+        <item index="2" class="java.lang.String" itemvalue="Python.other_baseline" />
+        <item index="3" class="java.lang.String" itemvalue="Python.stats_analyser" />
+        <item index="4" class="java.lang.String" itemvalue="Python.random_baseline" />
       </list>
     </recent_temporary>
   </component>
@@ -476,17 +467,17 @@
     <frame x="1536" y="256" width="1680" height="1052" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18467109" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25347012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38653636" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49728554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3170467" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3713355" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44625407" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -521,8 +512,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py</url>
-          <line>32</line>
+          <line>37</line>
           <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/graph/semrerank_doc_graph.py</url>
+          <line>484</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/graph/semrerank_doc_graph.py</url>
+          <line>215</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/graph/semrerank_doc_graph.py</url>
+          <line>226</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py</url>
+          <line>230</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -532,7 +543,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="51" />
+      <option name="time" value="73" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -571,13 +582,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/exp/other_baseline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/exp/exp_loader_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -647,7 +651,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_based.py">
+    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" column="9" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
@@ -737,7 +741,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_based.py">
+    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
@@ -768,7 +772,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_based.py">
+    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -782,7 +786,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_based.py">
+    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -796,7 +800,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_based.py">
+    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -850,21 +854,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/networkx/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_based.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/exp/random_baseline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -889,18 +879,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/exp/exp_runner_doc_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="162" column="54" lean-forward="false" selection-start-line="162" selection-start-column="54" selection-end-line="162" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Programs/anaconda3/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/exp/exp_loader_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="141">
+          <caret line="49" column="65" lean-forward="false" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graph/semrerank_doc_graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="521" column="50" lean-forward="true" selection-start-line="520" selection-start-column="4" selection-end-line="521" selection-end-column="50" />
+        <state relative-caret-position="141">
+          <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -909,8 +925,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/analysis/term_word_frequency_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="107" column="4" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+        <state relative-caret-position="367">
+          <caret line="283" column="76" lean-forward="false" selection-start-line="283" selection-start-column="76" selection-end-line="283" selection-end-column="76" />
           <folding>
             <element signature="e#185#195#0" expanded="true" />
           </folding>
