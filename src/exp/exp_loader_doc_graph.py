@@ -40,12 +40,12 @@ def create_settings():
     settings = list()
     root_folder = "/home/zz/Work/data/semrerank"
 
-    jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1"
-    jate_outfolder_per_file = "/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1_per_file"
-    system_folder="/home/zz/Work/data/semrerank/graph/doc_based/genia"
-    personalization_seed="/home/zz/Work/data/semrerank/jate_lrec2016/genia/ttf.json"
-    output_folder="output_genia"
-    embedding_setting="em_g-uni-sg-100-w3-m1"
+    # jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1"
+    # jate_outfolder_per_file = "/home/zz/Work/data/semrerank/jate_lrec2016/genia/min1_per_file"
+    # system_folder="/home/zz/Work/data/semrerank/graph/doc_based/genia"
+    # personalization_seed="/home/zz/Work/data/semrerank/jate_lrec2016/genia/ttf.json"
+    # output_folder="output_genia"
+    # embedding_setting="em_g-uni-sg-100-w3-m1"
 
     # jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/min1"
     # jate_outfolder_per_file = "/home/zz/Work/data/semrerank/jate_lrec2016/aclrd_ver2_atr4s/min1_per_file"
@@ -54,19 +54,19 @@ def create_settings():
     # output_folder="output_aclv2_atr4s"
     # embedding_setting="em_aclv2-uni-sg-100-w3-m1"
 
-    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/min1"
-    # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/min1_per_file"
-    # system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/ttc_mobile_atr4s"
-    # personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_mobile_atr4s/ttf.json"
+    # jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/ttc_mobile/min1"
+    # jate_outfolder_per_file = "/home/zz/Work/data/semrerank/jate_lrec2016/ttc_mobile/min1_per_file"
+    # system_folder="/home/zz/Work/data/semrerank/graph/doc_based/ttc_mobile"
+    # personalization_seed="/home/zz/Work/data/semrerank/jate_lrec2016/ttc_mobile/ttf.json"
     # output_folder="output_ttcm"
     # embedding_setting="em_ttcm-uni-sg-100-w3-m1"
 
-    # jate_terms_folder = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/min1"
-    # jate_outfolder_per_file = "/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/min1_per_file"
-    # system_folder="/home/zqz/Work/data/semrerank/graph/doc_based/ttc_wind"
-    # personalization_seed="/home/zqz/Work/data/semrerank/jate_lrec2016/ttc_wind/ttf.json"
-    # output_folder="output_ttcw"
-    # embedding_setting="em_ttcw-uni-sg-100-w3-m1"
+    jate_terms_folder = "/home/zz/Work/data/semrerank/jate_lrec2016/ttc_wind_atr4s/min1"
+    jate_outfolder_per_file = "/home/zz/Work/data/semrerank/jate_lrec2016/ttc_wind_atr4s/min1_per_file"
+    system_folder="/home/zz/Work/data/semrerank/graph/doc_based/ttc_wind_atr4s"
+    personalization_seed="/home/zz/Work/data/semrerank/jate_lrec2016/ttc_wind_atr4s/ttf.json"
+    output_folder="output_ttcw_atr4s"
+    embedding_setting="em_ttcw-uni-sg-100-w3-m1"
 
 
     for file in os.listdir(jate_terms_folder):
